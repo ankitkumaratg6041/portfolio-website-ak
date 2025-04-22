@@ -9,6 +9,12 @@ import { notFound } from 'next/navigation'
 // import { MDXRemote } from 'next-mdx-remote/rsc'
 // import NewsletterForm from '@/components/newsletter-form'
 
+interface PostPageProps {
+  params: {
+    slug: string
+  }
+}
+
 export async function generateStaticParams() {
   const posts = await getPosts()
   const slugs = posts.map(post => ({ slug: post.slug }))
@@ -16,7 +22,7 @@ export async function generateStaticParams() {
   return slugs
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
+export default async function Post({ params }: PostPageProps) {
   const { slug } = params
   const post = await getPostBySlug(slug)
 
