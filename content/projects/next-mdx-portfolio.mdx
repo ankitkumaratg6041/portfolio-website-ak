@@ -1,55 +1,49 @@
 ---
-  title: NextJs MDX Portfolio
-  summary: A portfolio website built with NextJs and MDX.
-  image: /images/projects/website1.jpg
-  author: 'Ankit Kumar'
-  publishedAt: '2025-04-22'
+title: Portfolio Website
+summary: A sleek, solo-built portfolio site with MDX blogging, dark/light theme, and project showcase—built using Next.js, Tailwind CSS, and deployed via Vercel.
+image: /images/projects/portfolio.png
+author: 'Ankit Kumar'
+publishedAt: '2025-06-16'
 ---
 
-This is a portfolio website built with NextJs and MDX. It uses the `@next/mdx`
-package to render MDX content in NextJs pages.
+This is a modern, fully responsive **developer portfolio website** built with **Next.js**, **Tailwind CSS**, and **MDX**. It features a dark/light theme toggle, showcases blog posts and projects, and includes a contact form for direct communication. The site is deployed via Vercel and continuously integrated with GitHub for instant updates on push.
 
 ## Features
 
-- **MDX Support**: Write content in MDX format.
-- **Syntax Highlighting**: Code blocks are syntax highlighted.
-- **Custom Components**: Use custom components in your MDX files.
-- **Responsive Design**: The website is responsive and works on all devices.
+- **Landing Page**: Contains a personal photo, a short introduction, and sections for recent posts and projects.
+- **Dark & Light Theme**: Users can toggle between themes using the `next-themes` plugin.
+- **Recent Posts**: Dynamically loads the latest blog articles written in MDX format.
+- **Recent Projects**: Displays the most recent projects with hover effects and links to live demos when available.
+- **Social Footer**: Clean footer with social media links.
+- **MDX Blog System**: All articles and project reports are written in `.mdx`, allowing for rich formatting and easy publishing.
+
+## Pages
+
+- **/posts**: Lists all blog posts; clicking opens detailed pages like [`/posts/introduction-to-nextjs`](https://portfolio-website-ak.vercel.app/posts/introduction-to-nextjs).
+- **/projects**: Shows projects in reverse chronological order with hover effects and deployment links.
+- **/contact**: A contact form where users can enter their name, email, and message. (Currently configured to only send messages from the portfolio owner to their own email, with future plans to open public messaging.)
 
 ## Technologies
 
-- **NextJs**: A React framework for building static and dynamic websites.
-- **MDX**: A file format that allows you to write JSX in your Markdown files.
-- **Tailwind CSS**: A utility-first CSS framework for building custom designs.
-- **Vercel**: A cloud platform for static sites and serverless functions.
-
-## Getting Started
-
-To get started with this project, you can clone the repository and install the
-dependencies:
-
-```bash
-git clone
-cd next-mdx-portfolio
-npm install
-```
-
-Once the dependencies are installed, you can run the development server:
-
-```bash
-npm run dev
-```
-
-The development server will start at `http://localhost:3000`.
+- **Next.js**: The core React framework for building server-side rendered and statically generated pages.
+- **Tailwind CSS**: Utility-first CSS framework used for styling and layout.
+- **MDX**: Used for rendering blog posts and project reports.
+- **Resend (Planned)**: Email service for future public contact form functionality.
+- **Vercel**: Hosting and CI/CD—connected to GitHub for automatic deployment on push.
+- **React Hook Form + Zod**: For form handling and validation.
+- **Radix UI & Lucide Icons**: For accessible components and icons.
 
 ## Deployment
 
-To deploy this project, you can use Vercel. You can link your GitHub repository
-to Vercel and deploy the project with a single click.
+The site is live and continuously deployed through **Vercel**.
+
+🔗 **Live Website:** [portfolio-website-ak.vercel.app](https://portfolio-website-ak.vercel.app)  
+🐱 **GitHub Repo:** [github.com/ankitkumaratg6041/portfolio-website-ak](https://github.com/ankitkumaratg6041/portfolio-website-ak)  
+💼 **LinkedIn:** [linkedin.com/in/ankitkumaratg](https://www.linkedin.com/in/ankitkumaratg/)
+
+Pushes to GitHub automatically trigger a rebuild and redeploy on Vercel.
 
 ## Conclusion
 
-This portfolio website is a great example of how you can use NextJs and MDX to
-build a modern website with dynamic content. By combining the power of NextJs
-and MDX, you can create interactive and engaging websites that are easy to
-maintain and update.
+This portfolio project is more than just a personal site—it's a full-stack, production-ready showcase of my work and writing. Built solo from the ground up, it emphasizes best practices, clean architecture, and extensibility through MDX and automated deployment.
+
