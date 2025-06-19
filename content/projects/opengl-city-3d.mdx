@@ -1,0 +1,79 @@
+---
+title: City Simulation – Real-Time 3D Rendering in OpenGL & C++
+summary: A real-time 3D city simulation built with C++ and OpenGL, showcasing modular design, dynamic camera controls, bounding-box collisions, and programmable rendering pipelines using VAOs/VBOs and shaders.
+image: /images/projects/citysimulation.png
+author: 'Ankit Kumar'
+publishedAt: '2024-12-01'
+---
+
+**City Simulation** is a modular 3D rendering project built using OpenGL and C++. It simulates an interactive urban environment where users control a vehicle, observe dynamic traffic systems, and switch between real-time camera perspectives. The project emphasizes a clean rendering pipeline and optimized object modeling using modern OpenGL concepts.
+
+## Architecture Overview
+
+The application is organized into multiple object-oriented classes to maximize separation of concerns and scalability:
+
+- **`Car` Class**: Encapsulates vehicle geometry, transformation logic, and animation (e.g., tire rotation, reverse lighting). Movement is handled through `glTranslatef` and `glRotatef` chained with bounding box collision checks.
+- **`Cuboid` Class**: Represents city buildings, each with programmatically generated windows. Rendered using custom vertex arrays for face construction and dynamic color assignment.
+- **`TrafficLight` Class**: Manages independent traffic lights using internal timers for state cycling (red, yellow, green).
+- **`BoundingBox` Class**: Handles axis-aligned bounding box (AABB) calculations for car-to-object collision detection.
+- **Camera System**: Built with `gluLookAt` for four perspectives (F1–F4) with dynamic updates based on car orientation and position.
+
+## Rendering Techniques
+
+- **Vertex Buffer Objects (VBOs)** and **Vertex Array Objects (VAOs)** are used to streamline draw calls and minimize CPU-GPU overhead.
+- **Programmable Pipeline**: Basic GLSL shaders support flexible lighting and object coloring.
+- **Hierarchical Transformations**: Wheels, lights, and windows are child objects transformed relative to the car’s local coordinate system.
+
+## Features
+
+- **Interactive Navigation**: WASD/Arrow keys enable real-time car movement, including turning and reversing.
+- **Multiple Camera Modes**: `gluLookAt` enables smooth view switching between third-person, top-down, corner, and first-person views.
+- **Dynamic Environment**: Buildings vary in size and shape with auto-scaled windows. Traffic lights cycle independently.
+- **Collision Detection**: Car movement is restricted on intersecting bounding boxes of buildings.
+- **Memory Debugging**: **Valgrind** was used extensively to detect leaks and invalid accesses in heap-allocated objects and vectors.
+- **Build System**: Includes a Makefile for easy compilation with dependency flags for `GL`, `GLEW`, and `GLUT`.
+
+## How to Run
+
+### Prerequisites (Ubuntu)
+```bash
+sudo apt-get install freeglut3 freeglut3-dev libglew-dev
+```
+
+## Clone and Build
+```bash
+git clone https://github.com/yourusername/yourprojectname.git
+cd yourprojectname
+make main
+./main
+```
+
+## Controls
+- Drive: W / S or ↑ / ↓ — Forward / Backward
+- Steering: A / D or ← / → — Left / Right (only when moving)
+- Views: F1 to F4 — Behind car, overhead, top-corner, driver view
+- Exit: ESC
+
+## Limitations
+- **Bounding Box Precision**: Randomized building geometry can misalign bounding boxes, leading to occasional pass-throughs.
+- **Static Layout**: Buildings and roads are statically positioned; procedural generation could enhance scalability.
+- **Window Artifacts**: Edge-case building shapes can cause skewed or misaligned window placements.
+
+## Future Improvements
+- Add real-time shadows and lighting via Phong or Blinn shaders.
+- Refactor collision detection to support mesh-level resolution.
+- Enable interactive traffic systems (e.g., responsive lights).
+- Procedural generation of city layout from seed values or user input.
+
+## Reflection
+This project solidified my understanding of transformation hierarchies, OpenGL buffer management, and real-time interaction in graphics applications. It was a hands-on deep dive into 3D engine fundamentals, and despite existing limitations, the result is a strong baseline for further graphics-intensive simulations or game-like environments.
+
+## Link to the Project
+🐱 **GitHub Repo:** [GitHub Repo](https://github.com/ankitkumaratg6041/opengl-city)
+
+## Technologies Used
+- C++
+- OpenGL (GLUT + GLEW)
+- GLSL (Basic Shader Logic)
+- Makefile
+- Valgrind
