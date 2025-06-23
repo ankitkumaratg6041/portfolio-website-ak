@@ -1,0 +1,95 @@
+---
+title: Real-Time Chat App
+summary: A full-stack real-time chat application built with Next.js, Express, Redis, Prisma, and Socket.IO—designed with clean architecture, secure auth, and fast messaging.
+image: /images/projects/chatApp.png
+author: 'Ankit Kumar'
+publishedAt: '2025-06-22'
+---
+
+This is a full-featured **real-time chat application** built using **Next.js**, **TypeScript**, **Express.js**, and **Redis**. It supports real-time messaging via **Socket.IO**, secure authentication with **NextAuth**, and PostgreSQL integration using **Prisma ORM**. The UI is designed with **Tailwind CSS**, **Radix UI**, and supports dark/light themes using `next-themes`.
+
+The app was built solo and is structured for scalability and future extensibility, including a planned integration with **Kafka** for message streaming.
+
+## Features
+
+- **Full-Stack Real-Time Chat**: Seamless real-time communication using Socket.IO with Redis pub/sub for fast and scalable messaging.
+- **Secure Authentication**: Implemented using NextAuth with JWT strategy and secure password hashing via `bcrypt`.
+- **Modern UI**: Built using Tailwind CSS, Radix UI components, and supports dark/light theming.
+- **Type-Safe Codebase**: Written entirely in TypeScript across frontend and backend.
+- **Form Validation**: Uses Zod with React Hook Form for reliable user input validation.
+- **Planned Kafka Integration**: Though currently paused due to Upstash limitations, the architecture is prepared for Kafka adoption in future releases.
+
+## Technologies
+
+- **Next.js**: Used for frontend routing, server-side rendering, and app structure.
+- **React + TypeScript**: Component-driven architecture with strict typing and form handling.
+- **Tailwind CSS**: For responsive, utility-first styling.
+- **Radix UI & Lucide Icons**: For accessible, modern UI components and icons.
+- **NextAuth**: Secure, extendable authentication system using JWT.
+- **Express.js**: Lightweight backend API layer written in TypeScript.
+- **Prisma ORM**: Connects to PostgreSQL for type-safe database access.
+- **Redis**: Used with Socket.IO for reliable real-time communication.
+- **Socket.IO**: Enables real-time bidirectional messaging.
+- **Zod + React Hook Form**: For client-side and server-side form validation.
+
+## Setup Instructions
+
+### 🧱 Clone the Repository
+
+```bash
+git clone https://github.com/ankitkumaratg6041/chatApp.git
+cd chatApp
+```
+
+## Install Dependencies
+
+# Frontend
+```bash
+cd front
+npm install
+```
+
+# Backend
+```bash
+cd ../backend
+npm install
+```
+
+### ⚙️ Configure Environment Variables
+
+Create a `.env` file in both the `backend` and `front` folders.
+
+# .env (backend)
+```env
+DATABASE_URL=postgresql://your-user:your-pass@localhost:5432/chatapp
+JWT_SECRET=your-jwt-secret
+REDIS_URL=redis://localhost:6379
+```
+
+# .env (frontend)
+```env
+NEXTAUTH_SECRET=your-secret
+NEXTAUTH_URL=http://localhost:3000
+```
+
+### 🔧 Run Migrations & Generate Prisma Client
+```bash
+cd backend
+npx prisma generate
+npx prisma migrate dev
+```
+
+### ▶️ Start the App
+```bash
+# Backend
+npm run dev
+```
+```bash
+# Frontend (in a new terminal)
+cd ../front
+npm run dev
+```
+## 🔗 Live Demo & Links
+
+- 🐱 **GitHub Repo**: [github.com/ankitkumaratg6041/chatApp](https://github.com/ankitkumaratg6041/chatApp)
+- 💼 **LinkedIn**: [linkedin.com/in/ankitkumaratg](https://www.linkedin.com/in/ankitkumaratg/)
