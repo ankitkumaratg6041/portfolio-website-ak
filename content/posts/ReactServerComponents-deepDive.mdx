@@ -1,0 +1,198 @@
+---
+title: React Server Components (RSC) – Deep Dive
+summary: Understanding RSC in Next.js – Server vs Client Components, purpose, usage, and rendering behavior.
+image: /images/posts/react-server-components.png
+author: 'Ankit Kumar'
+publishedAt: '2025-04-22'
+---
+
+# ⚛️ React Server Components (RSC) – In-Depth
+
+React Server Components (RSC) are a powerful feature that allow you to render components **on the server**, reducing client-side JavaScript and improving performance.
+
+---
+
+## 📦 What Are React Server Components?
+
+React Server Components are components that run **only on the server** and send pre-rendered HTML/JSON to the browser.  
+They help reduce the amount of JavaScript sent to the client, making your app **faster and more efficient**.
+
+---
+
+### ✅ Key Benefits
+
+- Zero JS bundle cost for server components
+- Access to server-side resources like databases, APIs, environment variables
+- Smaller client bundles = faster page loads
+- Seamless integration with client components
+
+---
+
+## 🧱 Component Types in RSC
+
+There are **two main types** of components in RSC architecture:
+
+---
+
+### 🟩 1. Server Components
+
+**Default behavior** in the Next.js App Router (`app/` folder).
+
+#### ✅ Purpose
+
+- Run entirely on the **server**
+- Never shipped to the browser
+- Can fetch data, read from filesystem, use secrets
+
+#### ✅ Usage
+
+```tsx
+// app/products/page.tsx
+export default async function ProductsPage() {
+  const products = await fetchProductsFromDB();
+
+  return (
+    <div>
+      <h1>Product List</h1>
+      <ul>
+        {products.map(p => <li key={p.id}>{p.name}</li>)}
+      </ul>
+    </div>
+  );
+}
+```
+
+## ✅ When to Use
+- Heavy data fetching
+
+- Access to secure data (e.g., DB, API keys)
+
+- Pages that don't need client interactivity
+
+### 🟦 2. Client Components
+
+Client Components are React components that run entirely in the **browser**.  
+You opt into client-side behavior by adding `'use client'` at the top of the file.
+
+---
+
+#### ✅ Purpose
+
+- Run in the **browser**
+- Used for **interactivity**, **state management**, and **side effects**
+
+---
+
+#### ✅ Usage Example
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(count + 1)}>Clicked {count} times</button>;
+}
+```
+
+### 🔁 How Server and Client Components Work Together
+
+In Next.js (App Router), **Server Components** can include **Client Components**, but **Client Components cannot import Server Components**.
+
+---
+
+#### ✅ Example: Server → Client Nesting (Valid)
+
+```tsx
+// Server component
+import Counter from './Counter'; // 'use client'
+
+export default function Page() {
+  return (
+    <div>
+      <h1>Hello</h1>
+      <Counter />  {/* hydrated client-side */}
+    </div>
+  );
+}
+```
+## 🚫 Why Client → Server Nesting Is Not Allowed
+You can’t import a server component into a client component because:
+
+- The browser can't access things like databases, environment variables, or fs
+
+- Server-only logic would break in the browser
+
+- Next.js will throw a build error
+
+### 🧠 Real-World Use Case Example
+
+```tsx
+// app/product/[id]/page.tsx (server)
+import ProductDetails from './ProductDetails'; // server
+import AddToCartButton from './AddToCartButton'; // client
+
+export default async function ProductPage({ params }) {
+  const product = await getProduct(params.id);
+
+  return (
+    <div>
+      <h1>{product.title}</h1>
+      <ProductDetails description={product.description} />
+      <AddToCartButton productId={product.id} />
+    </div>
+  );
+}
+```
+
+- `ProductDetails` runs only on the **server**
+- `AddToCartButton` is **interactive** and **hydrated** on the client
+
+---
+
+### 🧩 Summary Table
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Feature</strong></th>
+      <th><strong>Server Component</strong></th>
+      <th><strong>Client Component</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Runs on</strong></td>
+      <td>Server only</td>
+      <td>Browser</td>
+    </tr>
+    <tr>
+      <td><strong>Uses <code>useState</code> / <code>useEffect</code></strong></td>
+      <td>❌ No</td>
+      <td>✅ Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Access to DB / secrets</strong></td>
+      <td>✅ Yes</td>
+      <td>❌ No</td>
+    </tr>
+    <tr>
+      <td><strong>JS sent to browser</strong></td>
+      <td>❌ No</td>
+      <td>✅ Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Interactivity (click, input)</strong></td>
+      <td>❌ No</td>
+      <td>✅ Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Usage</strong></td>
+      <td>Pages, heavy data logic</td>
+      <td>Buttons, forms, modals</td>
+    </tr>
+  </tbody>
+</table>
+
+> 💡 Use **server components for everything** unless interactivity is needed — then break it out into a small **client component**.
