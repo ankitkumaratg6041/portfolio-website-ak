@@ -1,0 +1,87 @@
+---
+title: Why Turbopack is Faster than Webpack
+summary: Turbopack is a blazing-fast bundler built by Vercel to replace Webpack in Next.js. This post breaks down what makes it so fast.
+image: /images/posts/turbopack.jpg
+author: 'Ankit Kumar'
+publishedAt: '2025-04-22'
+---
+
+# 🚀 Why is Turbopack Faster than Webpack?
+
+Turbopack is the next-gen bundler created by **Vercel** (the team behind Next.js) to replace Webpack. It’s optimized for speed, modern web features, and developer experience.
+
+---
+
+## 🧠 What Do Bundlers Like Webpack and Turbopack Do?
+
+- Analyze and bundle JS, CSS, images, etc.
+- Watch for file changes during development
+- Serve your app efficiently in the browser
+
+---
+
+## ⚡ Key Reasons Turbopack is Faster
+
+### 1. 🦀 Written in Rust (Not JavaScript)
+- Rust is a compiled, low-level systems language that's **much faster** than JavaScript.
+- Webpack is JS-based and slower for large builds.
+- Rust = Racecar, JS = Scooter 🚗💨
+
+---
+
+### 2. 🧩 Incremental Bundling
+- Only **rebuilds changed files**, not the whole app.
+- Super fast hot-reloads (1ms–100ms vs 500ms+ in Webpack).
+
+---
+
+### 3. 📁 On-Demand Compilation
+- Turbopack compiles **only the routes/files requested** by the browser.
+- Doesn't waste time compiling unused parts of the app.
+
+> Like a chef cooking just your order, not the whole menu.
+
+---
+
+### 4. 🌐 Optimized for Modern Features
+- Built with support for:
+  - React Server Components (RSC)
+  - Code Splitting
+  - Streaming
+
+> Webpack supports these, but they weren’t designed into it from the start.
+
+---
+
+### 5. 🧠 Persistent Caching
+- Remembers previous builds and only rebuilds changed code.
+- Follow-up builds are **almost instant**.
+
+---
+
+## 🆚 Quick Comparison Table
+
+| Feature              | **Turbopack**              | **Webpack**              |
+|----------------------|-----------------------------|---------------------------|
+| Language             | Rust 🦀                    | JavaScript                |
+| Build strategy       | Incremental & Lazy         | Full/Partial Rebuilds     |
+| Compilation style    | On-Demand                  | Eager (All at Once)       |
+| Dev speed            | ⚡ Lightning Fast           | 🐢 Slower                 |
+| Modern feature support | ✅ First-class RSC & Streaming | ⚠️ Add-ons or plugins      |
+
+---
+
+## ✅ Should You Use Turbopack?
+
+If you’re:
+- Starting a **new Next.js project**
+- Not relying on custom Webpack plugins
+- Wanting **super-fast dev experience**
+
+👉 Go for **Turbopack**!
+
+---
+
+> 💡 Note: Turbopack is still in beta, but it's getting better fast and will soon become the default.
+
+---
