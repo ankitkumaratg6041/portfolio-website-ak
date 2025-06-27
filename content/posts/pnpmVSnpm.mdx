@@ -1,0 +1,103 @@
+---
+title: Why pnpm is Faster than npm
+summary: Understanding how pnpm outperforms npm in speed and efficiency.
+image: /images/posts/pnpm-vs-npm.jpg
+author: 'Ankit Kumar'
+publishedAt: '2025-04-22'
+---
+
+# ⚡ Why is `pnpm` Faster than `npm`?
+
+Both are package managers, but **pnpm wins in speed and efficiency** due to how it stores and links packages.
+
+---
+
+## 🧠 Key Differences
+
+### 1. 📦 Shared Global Store with Hard Links
+
+- `pnpm` **doesn’t duplicate packages** across projects.
+- Uses a **global content-addressable store**.
+- Projects receive **hard links** to the global packages.
+
+> ✅ Less disk space  
+> ✅ Faster install times
+
+---
+
+### 2. 🔒 Immutable Package Store
+
+- Packages are **read-only** once installed.
+- Guarantees safe, reliable caching.
+
+---
+
+### 3. 🧬 Strict Dependency Resolution
+
+- Enforces that each package only accesses what it explicitly depends on.
+- Helps avoid hidden bugs.
+
+---
+
+### 4. 🏎️ Faster Repeated Installs
+
+- Cached packages make reinstalling almost instant.
+- No need to re-download or re-copy files.
+
+---
+
+## 🆚 Quick Comparison Table
+
+<table>
+  <thead>
+    <tr>
+      <th>🔍 Feature</th>
+      <th>🧰 <strong>npm</strong></th>
+      <th>⚡ <strong>pnpm</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Disk Usage</strong></td>
+      <td>🔺 High (copies files)</td>
+      <td>🔻 Low (shared via links)</td>
+    </tr>
+    <tr>
+      <td><strong>Speed</strong></td>
+      <td>🐢 Slower</td>
+      <td>🚀 Much faster</td>
+    </tr>
+    <tr>
+      <td><strong>Dependency Isolation</strong></td>
+      <td>❌ Flat</td>
+      <td>✅ Strict & clean</td>
+    </tr>
+    <tr>
+      <td><strong>Global Cache</strong></td>
+      <td>⚠️ Limited</td>
+      <td>✅ Smart and efficient</td>
+    </tr>
+    <tr>
+      <td><strong>Monorepo Support</strong></td>
+      <td>⚠️ Okay</td>
+      <td>✅ Excellent</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## ✅ Summary
+
+Use `pnpm` if you want:
+- 🚀 Faster installs
+- 💾 Less disk usage
+- 🔒 Safer dependency resolution
+- 👨‍👩‍👧‍👦 Better monorepo support
+
+To get started:
+
+```bash
+npm install -g pnpm
+pnpm install
+```
